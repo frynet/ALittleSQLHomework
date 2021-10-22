@@ -16,4 +16,10 @@ data class Ticket(
     var row: Int,
 
     var column: Int,
-)
+) {
+    override fun equals(other: Any?): Boolean {
+        if (other == null || other !is Ticket) return false
+
+        return specId == other.specId && date == other.date && row == other.row && column == other.column
+    }
+}
