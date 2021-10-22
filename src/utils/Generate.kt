@@ -47,6 +47,16 @@ class Generate {
             return result.replaceAfterLast(")", semicolon)
         }
 
+        private fun actors(): String {
+            var id = 0L
+
+            Actors.forEach {
+                actors.add(Actor(id++, it))
+            }
+
+            return insertRecords(TableName.ACTORS, actors)
+        }
+
         private fun table(name: TableName): String {
             return when (name) {
 
