@@ -1,6 +1,6 @@
 package static.glossary
 
-object Roles : Iterable<String> {
+object Roles : Iterable<String>, Collection<String> {
 
     private val items = listOf(
         "бабочка",
@@ -61,4 +61,12 @@ object Roles : Iterable<String> {
     )
 
     override fun iterator() = items.iterator()
+
+    override val size = items.size
+
+    override fun contains(element: String) = items.contains(element)
+
+    override fun containsAll(elements: Collection<String>) = items.containsAll(elements)
+
+    override fun isEmpty() = items.isEmpty()
 }

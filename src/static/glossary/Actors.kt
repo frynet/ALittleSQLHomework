@@ -1,7 +1,7 @@
 package static.glossary
 
 
-object Actors : Iterable<String> {
+object Actors : Iterable<String>, Collection<String> {
 
     private val items = listOf(
         "Иванов",
@@ -107,4 +107,12 @@ object Actors : Iterable<String> {
     )
 
     override fun iterator() = items.iterator()
+
+    override val size = items.size
+
+    override fun contains(element: String) = items.contains(element)
+
+    override fun containsAll(elements: Collection<String>) = items.containsAll(elements)
+
+    override fun isEmpty() = items.isEmpty()
 }
