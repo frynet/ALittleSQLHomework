@@ -57,6 +57,16 @@ class Generate {
             return insertRecords(TableName.ACTORS, actors)
         }
 
+        private fun roles(): String {
+            var id = 0L
+
+            Roles.forEach {
+                roles.add(Role(id++, it))
+            }
+
+            return insertRecords(TableName.ROLES, roles)
+        }
+
         private fun table(name: TableName): String {
             return when (name) {
 
