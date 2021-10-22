@@ -45,7 +45,7 @@ class Generate {
                 result += tab + it + comma + endl
             }
 
-            return result.replaceAfterLast(")", semicolon)
+            return result.replaceAfterLast(")", semicolon) + endl + endl
         }
 
         private fun actors(): String {
@@ -105,7 +105,7 @@ class Generate {
             var result = ""
 
             Tables.items.keys.forEach {
-                result += table(it) + endl + endl
+                result += table(it)
             }
 
             return result

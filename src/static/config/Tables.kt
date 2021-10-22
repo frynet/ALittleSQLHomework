@@ -47,6 +47,4 @@ object Tables {
 
         TableName.TICKETS to listOf("id_spec", "_date", "price", "_row", "_col")
     )
-
-
 }
