@@ -1,6 +1,7 @@
 package utils
 
 import model.*
+import static.config.Count
 import static.config.Tables
 import static.config.Tables.TableName
 import static.glossary.*
@@ -65,6 +66,16 @@ class Generate {
             }
 
             return insertRecords(TableName.ROLES, roles)
+        }
+
+        private fun spectacles(): String {
+            var id = 0L
+
+            repeat(Count.SPECTACLES) {
+                spectacles.add(Spectacle(id++, Spectacles.random()))
+            }
+
+            return insertRecords(TableName.SPECTACLES, spectacles)
         }
 
         private fun table(name: TableName): String {

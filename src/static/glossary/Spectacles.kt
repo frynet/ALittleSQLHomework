@@ -1,6 +1,6 @@
 package static.glossary
 
-object Spectacles : Iterable<String> {
+object Spectacles : Iterable<String>, Collection<String> {
 
     private val items = listOf(
         "Побег из Шоушенка",
@@ -255,4 +255,12 @@ object Spectacles : Iterable<String> {
     )
 
     override fun iterator() = items.iterator()
+
+    override val size = items.size
+
+    override fun contains(element: String) = items.contains(element)
+
+    override fun containsAll(elements: Collection<String>) = items.containsAll(elements)
+
+    override fun isEmpty() = items.isEmpty()
 }
