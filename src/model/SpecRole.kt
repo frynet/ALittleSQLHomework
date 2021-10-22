@@ -3,9 +3,7 @@ package model
 
 data class SpecRole(
 
-    var specId: Long,
-
-    var roleId: Long,
+    var id: SpecRoleId,
 
     var main: Boolean,
 )
