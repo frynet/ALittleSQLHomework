@@ -22,4 +22,6 @@ data class Ticket(
 
         return specId == other.specId && date == other.date && row == other.row && column == other.column
     }
+
+    override fun toString() = "($specId, \'$date\', $price, $row, $column)"
 }

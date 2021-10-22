@@ -18,10 +18,9 @@ class Generate {
         private const val comma = ","
         private const val semicolon = ";"
 
-        private val hall = mutableListOf<Hall>()
-        private val hall = mutableListOf<HallPlace>()
         private val roles = mutableListOf<Role>()
         private val actors = mutableListOf<Actor>()
+        private val hall = mutableListOf<HallPlace>()
         private val tickets = mutableListOf<Ticket>()
         private val specRoles = mutableListOf<SpecRole>()
         private val specActors = mutableListOf<SpecActor>()
@@ -188,6 +187,37 @@ class Generate {
             }
 
             return insertRecords(TableName.HALL, hall)
+        }
+
+        private fun containedPlace(size: HallSize) = HallPlace(
+            row = Random.nextInt(1, size.rows),
+            column = Random.nextInt(1, size.columns)
+        )
+
+        private fun tickets(): String {
+            var id = 0L
+            var ticket: Ticket
+            var rep: Repertoire
+            var place: HallPlace
+
+            repeat(Count.TICKETS) {
+                rep = repertoires.random()
+                place = containedPlace(Count.HALL)
+                ticket = Ticket(
+                    id++,
+                    rep.specId,
+                    rep.date,
+                    rep.price,
+                    place.row,
+                    place.column
+                )
+
+                if (!tickets.contains(ticket)) {
+                    tickets.add(ticket)
+                }
+            }
+
+            return insertRecords(TableName.TICKETS, tickets)
         }
 
         private fun table(name: TableName): String {
