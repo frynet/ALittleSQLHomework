@@ -7,5 +7,5 @@ data class Actor(
 
     var name: String,
 ) {
-    override fun toString() = "(\'$name\')"
+    override fun toString() = "($id, \'$name\')"
 }

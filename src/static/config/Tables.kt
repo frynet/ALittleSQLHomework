@@ -29,11 +29,11 @@ object Tables {
 
     val items = mapOf(
 
-        TableName.ACTORS to listOf("name"),
+        TableName.ACTORS to listOf("id", "name"),
 
-        TableName.ROLES to listOf("title"),
+        TableName.ROLES to listOf("id", "title"),
 
-        TableName.SPECTACLES to listOf("title"),
+        TableName.SPECTACLES to listOf("id", "title"),
 
         TableName.SPEC_ROLES to listOf("id_spec", "id_role", "main"),
 

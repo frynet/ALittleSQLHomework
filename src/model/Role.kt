@@ -13,5 +13,5 @@ data class Role(
         return id == other.id || title == other.title
     }
 
-    override fun toString() = "(\'$title\')"
+    override fun toString() = "($id, \'$title\')"
 }
