@@ -5,6 +5,7 @@ import static.config.Count
 import static.config.Tables
 import static.config.Tables.TableName
 import static.glossary.*
+import kotlin.random.Random
 
 
 class Generate {
@@ -76,6 +77,24 @@ class Generate {
             }
 
             return insertRecords(TableName.SPECTACLES, spectacles)
+        }
+
+        private fun specRoles(): String {
+            var record: SpecRole
+
+            repeat(Count.SPEC_ROLES) {
+                record = SpecRole(
+                    spectacles.random().id,
+                    roles.random().id,
+                    Random.nextBoolean()
+                )
+
+                if (!specRoles.contains(record)) {
+                    specRoles.add(record)
+                }
+            }
+
+            return insertRecords(TableName.SPEC_ROLES, specRoles)
         }
 
         private fun table(name: TableName): String {

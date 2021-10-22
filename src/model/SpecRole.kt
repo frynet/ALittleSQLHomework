@@ -14,4 +14,6 @@ data class SpecRole(
 
         return specId == other.specId && roleId == other.roleId
     }
+
+    override fun toString() = "($specId, $roleId, $main)"
 }
