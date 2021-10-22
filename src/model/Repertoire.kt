@@ -16,4 +16,6 @@ data class Repertoire(
 
         return specId == other.specId && date == other.date
     }
+
+    override fun toString() = "($specId, \'$date\', $price)"
 }

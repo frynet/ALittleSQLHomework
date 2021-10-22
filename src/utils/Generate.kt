@@ -5,6 +5,7 @@ import static.config.Count
 import static.config.Tables
 import static.config.Tables.TableName
 import static.glossary.*
+import java.time.LocalDate
 import kotlin.random.Random
 
 
@@ -130,6 +131,46 @@ class Generate {
             }
 
             return insertRecords(TableName.SPEC_ROLES_ACTORS, specRoleActors)
+        }
+
+        private fun datesAfter(date: LocalDate, count: Int = 1): List<LocalDate> {
+            val result = mutableListOf<LocalDate>()
+
+            repeat(count) {
+                result.add(date.plusDays(Random.nextLong(4, 356)))
+            }
+
+            return result
+        }
+
+        private fun datesBefore(date: LocalDate, count: Int = 1): List<LocalDate> {
+            val result = mutableListOf<LocalDate>()
+
+            repeat(count) {
+                result.add(date.minusDays(Random.nextLong(4, 356)))
+            }
+
+            return result
+        }
+
+        private fun repertoires(): String {
+            var record: Repertoire
+            val after = datesAfter(LocalDate.now(), Count.DATES / 2)
+            val before = datesBefore(LocalDate.now(), Count.DATES / 2)
+
+            repeat(Count.REPERTOIRES) {
+                record = Repertoire(
+                    spectacles.random().id,
+                    (after + before).random(),
+                    Random.nextInt(100, 300)
+                )
+
+                if (!repertoires.contains(record)) {
+                    repertoires.add(record)
+                }
+            }
+
+            return insertRecords(TableName.REPERTOIRES, repertoires)
         }
 
         private fun table(name: TableName): String {
