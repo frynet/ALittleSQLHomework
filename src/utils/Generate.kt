@@ -4,7 +4,9 @@ import model.*
 import static.config.Count
 import static.config.Tables
 import static.config.Tables.TableName
-import static.glossary.*
+import static.glossary.Actors
+import static.glossary.Roles
+import static.glossary.Spectacles
 import java.time.LocalDate
 import kotlin.random.Random
 
@@ -115,14 +117,35 @@ class Generate {
             return insertRecords(TableName.SPEC_ACTORS, specActors)
         }
 
+        private fun findWhenSpecIdSatisfyToC6AndC9Constraints(): Set<Long> {
+            val result = specActors
+                .groupBy { it.specId }
+                .keys
+                .intersect(specRoles.groupBy { it.specId }.keys)
+
+            if (result.isEmpty()) {
+                throw Exception(
+                    "spectacles roles and actors will be empty: not found spectacle ID which satisfy C6 and C9 constraints"
+                )
+            }
+
+            return result
+        }
+
         private fun specRolesActors(): String {
+            var specId: Long
             var record: SpecRoleActor
+            val specIds = findWhenSpecIdSatisfyToC6AndC9Constraints()
+            val r = specRoles.groupBy { it.specId }
+            val a = specActors.groupBy { it.specId }
 
             repeat(Count.SPEC_ROLES_ACTORS) {
+                specId = specIds.random()
+
                 record = SpecRoleActor(
-                    spectacles.random().id,
-                    roles.random().id,
-                    actors.random().id
+                    specId,
+                    r[specId]!!.random().roleId,
+                    a[specId]!!.random().actorId
                 )
 
                 if (!specRoleActors.contains(record)) {

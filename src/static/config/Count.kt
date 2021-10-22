@@ -1,7 +1,9 @@
 package static.config
 
 import model.HallSize
-import static.glossary.*
+import static.glossary.Actors
+import static.glossary.Roles
+
 
 object Count {
 
