@@ -19,6 +19,7 @@ class Generate {
         private const val semicolon = ";"
 
         private val hall = mutableListOf<Hall>()
+        private val hall = mutableListOf<HallPlace>()
         private val roles = mutableListOf<Role>()
         private val actors = mutableListOf<Actor>()
         private val tickets = mutableListOf<Ticket>()
@@ -171,6 +172,22 @@ class Generate {
             }
 
             return insertRecords(TableName.REPERTOIRES, repertoires)
+        }
+
+        private fun hall(): String {
+            var place: HallPlace
+
+            for (i in 1..Count.HALL.rows) {
+                for (j in 1..Count.HALL.columns) {
+                    place = HallPlace(i, j)
+
+                    if (!hall.contains(place)) {
+                        hall.add(place)
+                    }
+                }
+            }
+
+            return insertRecords(TableName.HALL, hall)
         }
 
         private fun table(name: TableName): String {

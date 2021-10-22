@@ -1,12 +1,11 @@
 package static.config
 
+import model.HallSize
 import static.glossary.*
 
 object Count {
 
     const val SPECTACLES = 10
-
-    const val HALL = 20
 
     const val TICKETS = 20
 
@@ -31,4 +30,6 @@ object Count {
     val SPEC_ROLES_ACTORS = 20.coerceIn(1..SPEC_ROLES_ACTORS_MAX)
 
     val REPERTOIRES = 20.coerceIn(1..REPERTOIRES_MAX)
+
+    val HALL = HallSize(10, 10)
 }
