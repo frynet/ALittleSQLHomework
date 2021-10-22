@@ -8,4 +8,6 @@ data class SpecRoleActor(
     var roleId: Long,
 
     var actorId: Long,
-)
+) {
+    override fun toString() = "($specId, $roleId, $actorId)"
+}

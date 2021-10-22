@@ -114,6 +114,24 @@ class Generate {
             return insertRecords(TableName.SPEC_ACTORS, specActors)
         }
 
+        private fun specRolesActors(): String {
+            var record: SpecRoleActor
+
+            repeat(Count.SPEC_ROLES_ACTORS) {
+                record = SpecRoleActor(
+                    spectacles.random().id,
+                    roles.random().id,
+                    actors.random().id
+                )
+
+                if (!specRoleActors.contains(record)) {
+                    specRoleActors.add(record)
+                }
+            }
+
+            return insertRecords(TableName.SPEC_ROLES_ACTORS, specRoleActors)
+        }
+
         private fun table(name: TableName): String {
             return when (name) {
 
