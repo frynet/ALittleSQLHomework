@@ -77,7 +77,7 @@ database: create.sql join with generated fill.sql
   
   example output: 
   | id 	| title     	|
-  |----	|-----------	|
+  |:--:	|-----------	|
   | 2  	| тигр      	|
   | 4  	| птица     	|
   | 13 	| помощник  	|
@@ -87,4 +87,42 @@ database: create.sql join with generated fill.sql
   | 41 	| сокол     	|
   | 49 	| дворецкий 	|
   | 51 	| канцлер   	|
+</details>
+
+<details>
+  <summary>Найти спектакли, в которых заняты все актёры театра.</summary>
+  
+  ```SQL
+  DROP VIEW IF EXISTS R3;
+  DROP VIEW IF EXISTS R2;
+  DROP VIEW IF EXISTS R1;
+  DROP VIEW IF EXISTS R0;
+
+  CREATE VIEW R0 AS
+      SELECT COUNT(*) AS K
+      FROM actors;
+  CREATE VIEW R1 AS
+      SELECT id_spec, COUNT(*) AS M
+      FROM spectacles_actors
+      GROUP BY id_spec HAVING COUNT(*) > 0;
+  CREATE VIEW R2 AS
+      SELECT id_spec
+      FROM R1 INNER JOIN R0
+      ON R1.M = R0.K;
+  CREATE VIEW R3 AS
+      SELECT id, title
+      FROM R2 INNER JOIN spectacles
+      ON id = id_spec;
+
+  SELECT * FROM R3;
+  ```
+  
+  example output: 
+  | id 	| title                         	|
+  |:--:	|-------------------------------	|
+  | 9  	| Тёмный рыцарь                 	|
+  | 3  	| Бен-Гур                       	|
+  | 4  	| Телохранитель                 	|
+  | 0  	| Властелин колец: Две крепости 	|
+  | 8  	| Шестое чувство                	|
 </details>
