@@ -126,3 +126,50 @@ database: create.sql join with generated fill.sql
   | 0  	| Властелин колец: Две крепости 	|
   | 8  	| Шестое чувство                	|
 </details>
+  
+<details>
+  <summary>Найти таких актёров ведущих ролей, спектакли которых собирают полный зал.</summary>
+  
+  ```SQL
+  DROP VIEW IF EXISTS R5;
+  DROP VIEW IF EXISTS R4;
+  DROP VIEW IF EXISTS R3;
+  DROP VIEW IF EXISTS R2;
+  DROP VIEW IF EXISTS R1;
+  DROP VIEW IF EXISTS R0;
+
+  CREATE VIEW R0 AS
+      SELECT COUNT(*) AS K
+      FROM hall;
+  CREATE VIEW R1 AS
+      SELECT id_spec, COUNT(*) AS M
+      FROM sale_tickets
+      GROUP BY id_spec HAVING COUNT(*) > 0;
+  CREATE VIEW R2 AS
+      SELECT id_spec
+      FROM R1 INNER JOIN R0
+      ON R1.M = R0.K;
+  CREATE VIEW R3 AS
+      SELECT DISTINCT t1.id_spec, id_role
+      FROM spectacles_roles t1 INNER JOIN R2 t2
+      ON t1.id_spec = t2.id_spec
+      WHERE main = TRUE;
+  CREATE VIEW R4 AS
+      SELECT DISTINCT id_actor
+      FROM spectacles_roles_actors t1 INNER JOIN R3 t2
+      ON t1.id_spec = t2.id_spec AND t1.id_role = t2.id_role;
+  CREATE VIEW R5 AS
+      SELECT id, name
+      FROM actors INNER JOIN R4
+      ON id = id_actor;
+
+  SELECT * FROM R5;
+  ```
+  
+  example output: 
+  | id 	| name          |
+  |:--:	|---------------|
+  | 32 	| Тихомиров    	|
+  | 43 	| Константинов 	|
+  | 88 	| Иванов       	|
+</details>
