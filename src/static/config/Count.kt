@@ -3,11 +3,10 @@ package static.config
 import model.HallSize
 import static.glossary.Actors
 import static.glossary.Roles
+import static.glossary.Spectacles
 
 
 object Count {
-
-    const val SPECTACLES = 10
 
     const val TICKETS = 20
 
@@ -16,6 +15,10 @@ object Count {
     private val ACTORS = Actors.size
 
     private val ROLES = Roles.size
+
+    private val SPECTACLES_MAX = Spectacles.size
+
+    val SPECTACLES = 10.coerceIn(1..SPECTACLES_MAX)
 
     private val REPERTOIRES_MAX = DATES * SPECTACLES
 
