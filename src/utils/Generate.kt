@@ -54,9 +54,14 @@ class Generate {
 
         private fun actors(): String {
             var id = 0L
+            var actor: Actor
 
-            Actors.forEach {
-                actors.add(Actor(id++, it))
+            repeat(Count.ACTORS) {
+                actor = Actor(id++, Actors.random())
+
+                if (!actors.contains(actor)) {
+                    actors.add(actor)
+                }
             }
 
             return insertRecords(TableName.ACTORS, actors)
@@ -64,9 +69,14 @@ class Generate {
 
         private fun roles(): String {
             var id = 0L
+            var role: Role
 
-            Roles.forEach {
-                roles.add(Role(id++, it))
+            repeat(Count.ROLES) {
+                role = Role(id++, Roles.random())
+
+                if (!roles.contains(role)) {
+                    roles.add(role)
+                }
             }
 
             return insertRecords(TableName.ROLES, roles)
@@ -74,9 +84,14 @@ class Generate {
 
         private fun spectacles(): String {
             var id = 0L
+            var spectacle: Spectacle
 
             repeat(Count.SPECTACLES) {
-                spectacles.add(Spectacle(id++, Spectacles.random()))
+                spectacle = Spectacle(id++, Spectacles.random())
+
+                if (!spectacles.contains(spectacle)) {
+                    spectacles.add(spectacle)
+                }
             }
 
             return insertRecords(TableName.SPECTACLES, spectacles)

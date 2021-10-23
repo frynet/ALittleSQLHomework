@@ -12,11 +12,15 @@ object Count {
 
     const val DATES = 50
 
-    private val ACTORS = Actors.size
+    private val ACTORS_MAX = Actors.size
 
-    private val ROLES = Roles.size
+    private val ROLES_MAX = Roles.size
 
     private val SPECTACLES_MAX = Spectacles.size
+
+    val ACTORS = 20.coerceIn(1..ACTORS_MAX)
+
+    val ROLES = 20.coerceIn(1..ROLES_MAX)
 
     val SPECTACLES = 10.coerceIn(1..SPECTACLES_MAX)
 
