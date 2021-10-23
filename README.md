@@ -36,6 +36,7 @@ database: create.sql join with generated fill.sql
       SELECT t1.id, name
       FROM R2 t2 INNER JOIN actors t1
       ON t1.id = t2.id;
+                                              
   SELECT * FROM R3;
   ```
   
@@ -70,6 +71,7 @@ database: create.sql join with generated fill.sql
       SELECT t1.id, title
       FROM R0 INNER JOIN roless t1
       ON t1.id = id_role;
+                                           
   SELECT * FROM R1;
   ```
   
