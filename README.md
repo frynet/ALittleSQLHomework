@@ -1,4 +1,4 @@
-# A little SQL Homework within bachelor educate
+# A little SQL Homework within bachelor education
 
 ### [ER-model](https://raw.githubusercontent.com/frynet/TheatreManager/master/img/ER-model.svg)
 
