@@ -57,7 +57,7 @@ database: create.sql join with generated fill.sql
 </details>
   
 <details>
-  <summary>Какие роли исполняли только одни актеры?</summary>
+  <summary>Какие роли исполняли только одни актёры?</summary>
   
   ```SQL
   DROP VIEW IF EXISTS R1;
