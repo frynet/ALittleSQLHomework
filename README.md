@@ -3,7 +3,8 @@
 ### [ER-model](https://raw.githubusercontent.com/frynet/TheatreManager/master/img/ER-model.svg)
 
 ```SQL
-dialect - PostgreSQL
+dialect: PostgreSQL
+database: create.sql join with generated fill.sql
 ```
 
 ## Queries:
