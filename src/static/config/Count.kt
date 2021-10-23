@@ -8,7 +8,7 @@ import static.glossary.Spectacles
 
 object Count {
 
-    const val TICKETS = 20
+    val HALL = HallSize(2, 2)
 
     const val DATES = 50
 
@@ -40,5 +40,7 @@ object Count {
 
     val REPERTOIRES = 20.coerceIn(1..REPERTOIRES_MAX)
 
-    val HALL = HallSize(10, 10)
+    private val TICKETS_MAX = REPERTOIRES * HALL.columns * HALL.rows
+
+    val TICKETS = 100.coerceIn(1..TICKETS_MAX)
 }
